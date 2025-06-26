@@ -13,10 +13,19 @@
         </template>
 
     </van-nav-bar>
+
 <!--    定义了一个中间的插槽可以放东西  -->
-    <slot>
-        <div>在这里写东西</div>
-    </slot>
+    <div id = "content">
+        <template v-if = "active === 'index'">
+            <Index/>
+        </template>
+        <template v-if = "active === 'team'">
+            <Team/>
+        </template>
+        <template v-if = "active === 'user'">
+            <User/>
+        </template>
+    </div>
 
     <van-tabbar v-model="active" @change="onChange">
         <van-tabbar-item icon="home-o" name="index">主页</van-tabbar-item>
@@ -30,6 +39,8 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import { showToast } from "vant";// 引入 showToast 方法
+import Index from '../pages/Index.vue';
+import Team from '../pages/Team.vue';
 
 const onClickLeft = () => alert('返回');
 const onClickRight = () => alert('按钮');
