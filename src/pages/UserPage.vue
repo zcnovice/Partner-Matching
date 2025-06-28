@@ -32,7 +32,8 @@ const user = {
 const router = useRouter();
 
 /* 其主要功能是借助 vue-router 进行路由跳转，同时携带相关参数到目标页面 */
-const toEidit = (editKey: string,editName:string,currentValue: string) => {
+const toEdit = (editKey: string,editName:string,currentValue: string) => {
+    console.log(editKey,editName,currentValue)
     router.push({
         /* 跳转位置 */
         path: '/user/edit',

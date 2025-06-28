@@ -30,6 +30,7 @@ const editUser = ref({
 const onSubmit = (values) => {
     //todo 把editKey, currentValue, editName 提交的后台
     console.log('onSubmit'+values)
+    console.log("sss"+ editKey,editName,currentValue)
 };
 </script>
 

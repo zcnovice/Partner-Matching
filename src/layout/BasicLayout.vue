@@ -36,7 +36,10 @@ import { useRouter } from "vue-router";// 引入 useRoute 方法
 /* useRouter 用于获取当前应用的路由实例。借助这个实例，你能进行编程式的路由跳转、添加路由守卫等操作。 */
 const route = useRouter();
 
-const onClickLeft = () => alert('返回');
+const onClickLeft = () => {
+    /* 导航到浏览器历史记录中的上一个页面 */
+    route.back();
+}
 const onClickRight = () => {
     route.push('/search');
 };
