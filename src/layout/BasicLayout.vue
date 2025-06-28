@@ -31,10 +31,15 @@
 <script setup lang="ts">
 // import {ref} from 'vue';
 import { showToast } from "vant";// 引入 showToast 方法
+import { useRouter } from "vue-router";// 引入 useRoute 方法
 
+/* useRouter 用于获取当前应用的路由实例。借助这个实例，你能进行编程式的路由跳转、添加路由守卫等操作。 */
+const route = useRouter();
 
 const onClickLeft = () => alert('返回');
-const onClickRight = () => alert('按钮');
+const onClickRight = () => {
+    route.push('/search');
+};
 
 /* active表示当前是哪个底边栏高亮 */
 // 默认值应该是index，因为第一个是主页
