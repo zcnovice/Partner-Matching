@@ -20,11 +20,9 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 const editUser = ref({
-    value: {
-        editKey: route.query.editKey,
-        currentValue: route.query.currentValue,
-        editName: route.query.editName,
-    },
+    editKey: route.query.editKey,
+    currentValue: route.query.currentValue,
+    editName: route.query.editName,
 });
 
 const onSubmit = (values) => {
