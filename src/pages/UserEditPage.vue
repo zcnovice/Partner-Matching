@@ -2,7 +2,7 @@
     <van-form @submit="onSubmit">
         <van-field
             v-model="editUser.currentValue"
-            name="editUser.editKey"
+            :name="editUser.editKey"
             :label="editUser.editName"
             :placeholder="`请输入${editUser.editName}`"
         />
@@ -27,8 +27,7 @@ const editUser = ref({
 
 const onSubmit = (values) => {
     //todo 把editKey, currentValue, editName 提交的后台
-    console.log('onSubmit'+values)
-    console.log("sss"+ editKey,editName,currentValue)
+    console.log('onSubmit',values)
 };
 </script>
 
