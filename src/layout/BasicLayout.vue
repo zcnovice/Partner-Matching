@@ -1,7 +1,6 @@
 <template>
     <van-nav-bar
         title="标题"
-        right-text="按钮"
         left-arrow
         @click-left="onClickLeft"
         @click-right="onClickRight"
@@ -14,40 +13,32 @@
 
     </van-nav-bar>
 
-<!--    定义了一个中间的插槽可以放东西  -->
-    <div id = "content">
-        <template v-if = "active === 'index'">
-            <Index/>
-        </template>
-        <template v-if = "active === 'team'">
-            <Team/>
-        </template>
-        <template v-if = "active === 'user'">
-            <User/>
-        </template>
+
+<!--  vue-router 提供的动态组件，它充当一个占位符，用于显示当前路由所匹配的组件  -->
+    <div id="content">
+        <router-view></router-view>
     </div>
 
-    <van-tabbar v-model="active" @change="onChange">
-        <van-tabbar-item icon="home-o" name="index">主页</van-tabbar-item>
-        <van-tabbar-item icon="search" name="team">队伍页</van-tabbar-item>
-        <van-tabbar-item icon="setting-o" name="user">个人</van-tabbar-item>
+    <van-tabbar route @change="onChange">
+        <van-tabbar-item to="/" icon="home-o" name="index">主页</van-tabbar-item>
+        <van-tabbar-item to="/team" icon="search" name="team">队伍页</van-tabbar-item>
+        <van-tabbar-item to="/user" icon="setting-o" name="user">个人</van-tabbar-item>
     </van-tabbar>
 
 </template>
 
 
 <script setup lang="ts">
-import {ref} from 'vue';
+// import {ref} from 'vue';
 import { showToast } from "vant";// 引入 showToast 方法
-import Index from '../pages/Index.vue';
-import Team from '../pages/Team.vue';
+
 
 const onClickLeft = () => alert('返回');
 const onClickRight = () => alert('按钮');
 
 /* active表示当前是哪个底边栏高亮 */
 // 默认值应该是index，因为第一个是主页
-const active = ref("index");
+// const active = ref("index");
 //const onChange = (index: string | number) => showToast(`标签 ${index}`);
 //const onChange1 = (index:string |number) => Toast(`标签 ${index}`);
 const onChange = (index: string) => showToast(`标签 ${index}`);
