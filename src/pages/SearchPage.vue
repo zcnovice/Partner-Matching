@@ -51,11 +51,12 @@ import {useRouter} from 'vue-router';
 const router = useRouter();
 const doSearchResult = () => {
     router.push({
-        path: '/search/result',
+        path: '/search/list',
         query: {
-            tagList: activeIds.value,
+            tags: activeIds.value,
         }
     });
+    console.log("ghgg"+activeIds.value);
 };
 
 const searchText = ref('');
