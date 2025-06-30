@@ -20,15 +20,13 @@
 import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
 import myAxios from '../plugins/myAxios.js';
-import {Toast} from "vant";// 引入 showToast 方法
+import {showToast } from "vant";// 引入 showToast 方法
 import qs from 'qs';
 
 const route = useRoute();
 const {tags} = route.query;
-console.log('tags1', tags);
 
 onMounted(() => {
-    console.log('tags', tags);
     myAxios.get('/user/search/tags', {
         withCredentials: false,
         params: {
@@ -46,11 +44,17 @@ onMounted(() => {
     })
         .then(function (response) {
             console.log('/user/search/tags succeed', response);
-            Toast.success('请求成功');
+            showToast({
+                message: '请求成功',
+                type: 'success'
+            });
         })
         .catch(function (error) {
             console.log('/user/search/tags failed', error);
-            Toast.fail('请求失败');
+            showToast({
+                message: '请求失败',
+                type:'error'
+            })
         })
 })
 
