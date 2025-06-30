@@ -14,6 +14,7 @@
             <van-button size="mini">联系我</van-button>
         </template>
     </van-card>
+    <van-empty v-if="!userList || userList.length < 1" description="搜索结果为空" />
 </template>
 
 <script setup lang="js">
@@ -25,9 +26,10 @@ import qs from 'qs';
 
 const route = useRoute();
 const {tags} = route.query;
-
+console.log(tags);
 onMounted(() => {
-    myAxios.get('/user/search/tags', {
+    console.log("111"+tags);
+    const userListData = myAxios.get('/user/search/tags', {
         withCredentials: false,
         params: {
             tagNameList: tags,
@@ -48,6 +50,17 @@ onMounted(() => {
                 message: '请求成功',
                 type: 'success'
             });
+            const userListData = response.data?.data;
+
+            if (userListData && Array.isArray(userListData)) {
+                userListData.forEach(user => {
+                    if (user.tags) {
+                        /* 如果用户有 tags 属性，则将其从JSON字符串解析为JavaScript数组 */
+                        user.tags = JSON.parse(user.tags);
+                    }
+                });
+                userList.value = userListData;
+            }
         })
         .catch(function (error) {
             console.log('/user/search/tags failed', error);
@@ -55,7 +68,8 @@ onMounted(() => {
                 message: '请求失败',
                 type:'error'
             })
-        })
+        });
+
 })
 
 
@@ -75,7 +89,7 @@ const mockUser = ref({
     createTime: new Date(),
 })
 
-const userList = ref({mockUser});
+const userList = ref([]);
 
 </script>
 
