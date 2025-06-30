@@ -36,10 +36,27 @@ doclose(tag) 是事件触发时要调用的方法。doclose 是在 <script setup
         v-model:main-active-index="activeIndex"
         :items="tagList"
     />
+
+    <div style="padding: 16px">
+        <van-button type="primary" size="large" block @click="doSearchResult">
+            搜索
+        </van-button>
+    </div>
 </template>
 
 <script setup lang="ts">
 import {ref} from 'vue';
+
+import {useRouter} from 'vue-router';
+const router = useRouter();
+const doSearchResult = () => {
+    router.push({
+        path: '/search/result',
+        query: {
+            tagList: activeIds.value,
+        }
+    });
+};
 
 const searchText = ref('');
 
@@ -109,7 +126,7 @@ const activeIndex = ref(0);
 
 //关闭标签
 /* filter 是 JavaScript 数组的一个方法，它会创建一个新数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。 */
-const doclose = (tag) => {
+const doclose = (tag :  any) => {
     activeIds.value = activeIds.value.filter(item => {
         /*  item 是 activeIds.value 数组中的每个元素。
         item !== tag 是过滤条件，即只保留那些不等于 tag 的元素。*/
