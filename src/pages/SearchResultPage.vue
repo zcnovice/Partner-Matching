@@ -17,10 +17,10 @@
     <van-empty v-if="!userList || userList.length < 1" description="搜索结果为空" />
 </template>
 
-<script setup lang="js">
+<script setup lang="ts">
 import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
-import myAxios from '../plugins/myAxios.js';
+import myAxios from '../plugins/myAxios.js' ;
 import {showToast } from "vant";// 引入 showToast 方法
 import qs from 'qs';
 

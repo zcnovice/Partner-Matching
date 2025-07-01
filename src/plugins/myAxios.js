@@ -7,6 +7,9 @@ const myAxios = axios.create({
     baseURL: 'http://localhost:8080/api'
 });
 
+/* 让 myAxios 这个 axios 实例在跨域请求时携带凭证信息。 */
+myAxios.defaults.withCredentials = true;
+
 //拦截器
 // 添加请求拦截器
 myAxios.interceptors.request.use(function (config) {
@@ -21,8 +24,16 @@ myAxios.interceptors.request.use(function (config) {
 // 添加响应拦截器
 myAxios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
-    console.log("请求收到了了",response)
-    return response;
+    console.log("请求收到了",response)
+    /*{
+      data: {},      // 服务器返回的数据
+      status: 200,    // HTTP状态码
+      statusText: 'OK',
+      headers: {},    // 响应头
+      config: {}      // 请求配置
+    }*/
+    /* 只返回数据 */
+    return response.data;
 }, function (error) {
     // 对响应错误做点什么
     return Promise.reject(error);
