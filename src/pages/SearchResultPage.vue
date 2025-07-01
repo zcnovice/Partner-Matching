@@ -51,7 +51,6 @@ onMounted(() => {
                 type: 'success'
             });
             const userListData = response.data?.data;
-
             if (userListData && Array.isArray(userListData)) {
                 userListData.forEach(user => {
                     if (user.tags) {
